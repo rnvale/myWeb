@@ -1,0 +1,37 @@
+/* 全局主题配色 */
+:root {
+  /* 主色调 */
+  --primary-color: #1890ff;
+  --primary-light: #40a9ff;
+  
+  /* 情感色 */
+  --positive-color: #52c41a;
+  --positive-light: #95de64;
+  --positive-bg: #f6ffed;
+  
+  --negative-color: #ff4d4f;
+  --negative-light: #ff7875;
+  --negative-bg: #fff2f0;
+  
+  --neutral-color: #faad14;
+  --neutral-light: #ffec3d;
+  
+  --category-color: #722ed1;
+  --category-light: #b37feb;
+  
+  /* 背景色 */
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 全局应用背景 */
+body {
+  background-color: var(--bg-color);
+}
+
+/* 卡片样式 */
+.card {
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+}
