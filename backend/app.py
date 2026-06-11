@@ -488,4 +488,8 @@ def get_quadrant_scatter():
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    import os
+    # 获取 Render 分配的端口，如果没有则使用 5000
+    port = int(os.environ.get('PORT', 5000))
+    # 关键：将 host 设置为 '0.0.0.0'，监听所有外部接口
+    app.run(host='0.0.0.0', port=port, debug=True)
