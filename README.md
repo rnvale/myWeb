@@ -13,7 +13,6 @@
 - **交互式筛选**：支持按情感类型（正面/负面/全部）和方面类别进行筛选，所有图表实时联动更新
 - **悬停提示与动画**：每个图表均支持鼠标悬停查看详情，渲染时带有平滑动画效果
 - **前后端分离**：Vue3 + Flask 架构，代码清晰，易于维护和扩展
-- **云端部署**：前端部署于 Vercel，后端部署于 Render，支持公网访问
 
 ## 🛠 技术栈
 
@@ -30,30 +29,21 @@
 - **跨域支持**：Flask-CORS
 - **数据处理**：Pandas
 
-### 部署
-- **前端**：Vercel
-- **后端**：Render
-- **代码托管**：GitHub
+## 🌐 在线访问
 
-## 📁 项目结构
+**网站地址**：[https://haolin-zone.xyz](https://haolin-zone.xyz)
 
-```
-VisProject/
-├── frontend/               # Vue3 前端项目
-│   ├── src/
-│   │   ├── components/     # 11 个图表组件 + 筛选器组件
-│   │   ├── utils/          # 中英文映射、事件总线
-│   │   ├── App.vue         # 主布局（侧边栏导航 + 页面切换）
-│   │   └── main.ts         # 入口文件
-│   └── package.json
-├── backend/                # Flask 后端项目
-│   ├── app.py              # API 接口（数据分析与筛选）
-│   ├── data/               # AWARE 数据集
-│   └── requirements.txt    # Python 依赖
-└── README.md
-```
+系统已部署至公网，可直接访问使用，无需本地环境配置。
 
-## 🚀 快速开始
+## 💻 本地开发运行
+
+如需在本地进行开发调试或二次开发，可按照以下步骤运行项目。
+
+### 前置要求
+
+- Node.js 20 或更高版本
+- Python 3.11 或更高版本
+- Git
 
 ### 1. 克隆项目
 
@@ -70,7 +60,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-后端服务将在 `http://localhost:5000` 启动。
+后端服务将在 `http://localhost:5000` 启动，提供数据分析 API 接口。
 
 ### 3. 启动前端
 
@@ -82,9 +72,41 @@ npm run dev
 
 前端服务将在 `http://localhost:5173` 启动。
 
-### 4. 访问系统
+### 4. 本地访问
 
-打开浏览器访问 `http://localhost:5173` 即可使用。
+打开浏览器访问 `http://localhost:5173` 即可使用本地版本。本地运行时，前端会请求本地的后端服务，所有数据处理均在本地完成。
+
+### 5. 构建生产版本
+
+如需构建前端生产版本，执行以下命令：
+
+```bash
+cd frontend
+npm run build
+```
+
+构建产物将输出到 `frontend/dist` 目录，可用于部署到任意静态服务器。
+
+## 📁 项目结构
+
+```
+myWeb/
+├── frontend/               # Vue3 前端项目
+│   ├── src/
+│   │   ├── components/     # 11 个图表组件 + 筛选器组件
+│   │   ├── utils/          # 中英文映射、事件总线
+│   │   ├── App.vue         # 主布局（侧边栏导航 + 页面切换）
+│   │   ├── http.ts         # API 地址配置（已修改为云端地址）
+│   │   └── main.ts         # 入口文件
+│   └── dist/               # 构建产物
+├── backend/                # Flask 后端项目
+│   ├── app.py              # API 接口（已修改启动配置）
+│   ├── data/               # AWARE 数据集
+│   └── requirements.txt    # Python 依赖清单
+├── vercel.json             # Vercel 部署配置
+├── runtime.txt             # Python 版本指定
+└── README.md
+```
 
 ## 📊 图表清单
 
@@ -111,16 +133,23 @@ npm run dev
 5. **整体评价类最受关注**（约 3000 条评论）
 6. **长评论更倾向于负面表达**
 
-## 📦 部署地址
-
-- **前端**：[https://my-web-olive-ten.vercel.app](https://my-web-olive-ten.vercel.app)
-- **后端**：[https://myweb-bwk2.onrender.com](https://myweb-bwk2.onrender.com)
-
 ## 📚 数据来源
 
 - **数据集名称**：AWARE（App Review Analysis with Weak REcognition）
 - **访问地址**：[https://opendatalab.com/OpenDataLab/AWARE](https://opendatalab.com/OpenDataLab/AWARE)
 - **数据规模**：11,321 条标注评论，12 个方面类别
+
+## 🔧 云端部署改动
+
+为适配云端部署，对项目进行了以下调整：
+
+**前端修改**：将 `http.ts` 中的 API 地址从本地 `localhost:5000` 改为 Render 云端后端地址。
+
+**后端修改**：将 `app.py` 中的启动配置改为从环境变量读取端口，并设置 `host='0.0.0.0'`，使服务能被云平台正确检测。
+
+**新增配置文件**：添加 `vercel.json` 配置 Vercel 构建命令和路由规则；添加 `runtime.txt` 指定 Python 3.11 版本；添加 `requirements.txt` 列出后端依赖。
+
+**平台配置**：Render 平台设置根目录为 `backend`，构建命令为 `pip install -r requirements.txt`，启动命令为 `python app.py`；Vercel 平台关联 GitHub 仓库实现自动部署。
 
 ## 📄 开源协议
 
@@ -129,3 +158,4 @@ npm run dev
 ## 👤 作者
 
 - **GitHub**：[YYJXX-lab](https://github.com/YYJXX-lab)
+- **网站**：[https://haolin-zone.xyz](https://haolin-zone.xyz)
