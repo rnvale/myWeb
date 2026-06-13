@@ -1,6 +1,3 @@
-好的，我为你撰写一份适合放在 GitHub 仓库的 `README.md` 文件，内容涵盖项目简介、功能特点、技术栈、安装运行、部署地址、数据来源、图表说明等。
-
-```markdown
 # App评论情感分析可视化系统
 
 基于 AWARE 数据集的 App 评论情感分析可视化系统，提供多维度、交互式的数据分析与可视化展示。
@@ -132,4 +129,3 @@ npm run dev
 ## 👤 作者
 
 - **GitHub**：[YYJXX-lab](https://github.com/YYJXX-lab)
-```
